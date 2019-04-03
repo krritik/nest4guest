@@ -1,2 +1,2 @@
-# online-guets-house-booking-system
-This is a java based online guest house booking system
+# online-guest-house-booking-system
+This is a python based online guest house booking system
