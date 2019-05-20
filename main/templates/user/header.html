@@ -1,0 +1,18 @@
+<html>
+{% load staticfiles %}
+<head>
+    <link rel="stylesheet" href="{% static "main/css/materialize.css" %}">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+<body>
+	
+	<br><br>
+	<div class="container">
+		{% block content %}
+		{% endblock %}
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+
+
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+
+</style>
+</head>
+<body>
+
+{% if messages %}
+        {% for message in messages %}
+
+            <div class="alert alert-info">
+                <strong style="text-align: center">{{ message }}</strong>
+
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+            </div>
+
+        {% endfor %}
+{% endif %}
+
+<div class="container">
+  <header>
+    <i aria-hidden="true"></i>
+  </header>
+  <main>
+    <div class="row">
+      <div class="center col-lg-4">
+        <div class="photo-left">
+        </div>
+        <h4 class="name">{{user.first_name}} {{user.last_name}}</h4>
+        <p class="info">{{user.username}}</p>
+        <p class="info">{{user.email}}</p>
+        <p class="desc">Hello! I am {{user.first_name}} {{user.last_name}}</p>
+        <div class="social">
+          <i class="fa fa-facebook-square" aria-hidden="true"></i>
+          <i class="fa fa-twitter-square" aria-hidden="true"></i>
+        </div>
+      </div>
+     
+  </main>
+  
+  <div class="banner-top"  style="background-color: #0f2453; ">
+                    <h2>Book Your Room Today</h2>
+                    <div class="banner-bottom">
+                        
+                        <form method="post" action="{% url 'index' %}" id="options_form"> 
+                        {{ form }}
+                        {% csrf_token %}
+                        <button  type="submit"> submit </button>
+                     </div>       
+</div>
+  
+  
+  
+  </body>
+  </html>

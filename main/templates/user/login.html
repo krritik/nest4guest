@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>User_Signup</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+/* Style the header */
+.header {
+  background-color: #EDBD4C;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: right;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Create three unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+}
+
+/* Left and right column */
+.column.side {
+  width: 25%;
+}
+
+/* Middle column */
+.column.middle {
+  width: 50%;
+  text-align: center;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column.side, .column.middle {
+    width: 100%;
+  }
+}
+
+/* Style the footer */
+.footer {
+  background-color: #EDBD4C;
+  padding: 10px;
+  text-align: center;
+  position: fixed;
+  height: 50px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin-bottom: 0px;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Online Guest House Booking Portal</h1>
+  <p style="font-family:times new roman;font-size:140%";>Log In</p>
+
+</div>
+
+<div class="topnav">
+</div>
+
+<div class="row">
+  <div class="column side">
+ </div>
+  
+  <div class="column middle">
+   {#<form method="post" action="{% url 'index' %}" id="options_form"> #}
+    <form method="post" novalidate>
+        {% csrf_token %}
+        <table border="1">
+        		{{form}}
+		</table>
+        <button  type="submit"> submit </button>
+	</form>
+
+    
+  </div>
+  
+  <div class="column side">
+    <h2></h2>
+    <p></p>
+  </div>
+</div>
+
+<div class="footer">
+  <p></p>
+</div>
+  
+</body>
+</html>

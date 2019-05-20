@@ -1,0 +1,13 @@
+<html>
+
+<head>
+</head>
+
+<body>
+</body>
+     <form method="post" action="{% url 'index' %}" id="options_form">
+        {% csrf_token %}
+		{{form}}
+		</table>
+        <button  type="submit"> submit </button>
+</html>

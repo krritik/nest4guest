@@ -1,0 +1,172 @@
+
+
+
+
+
+  <!--  {% if messages %}
+        {% for message in messages %}
+
+            <div class="alert alert-info">
+                <strong style="text-align: center">{{ message }}</strong>
+
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+            </div>
+
+        {% endfor %}
+    {% endif %}
+
+<html>
+<head>
+</head>
+
+
+
+<body>
+<div class="plans-section" id="rooms">
+				 <div class="container">
+				 <h3 class="title-w3-agileits title-black-wthree">Availability of Rooms</h3>
+						<div class="priceing-table-main">
+
+
+                            {% for room in rooms %}
+
+                                {% if  room.no_rooms == 0 %}
+
+                                    <div class="list price-grid wthree lost">
+                                        <div class="price-block agile">
+                                            <div class="price-gd-top1" >
+                                                <h4 style="margin-top: -0%";>#{{ room.no_rooms }} Rooms </h4>
+                                            </div>
+                                            <div class="price-gd-bottom">
+                                                <br>
+                                                <div class="price-selet">
+                                                    <h3><span>#</span> Sorry Rooms are Not Available @ {{ room.G.name }}</h3>
+                                                    <a href="{% url 'home' %}" >Go Back</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><br><br><br>
+
+                                {% else %}
+
+                                    <div class="list">
+                                        <div class="price-block agile">
+                                            <div class="price-gd-top1 " >
+                                                <h4>#{{ room.no_rooms }} Rooms </h4>
+                                            </div>
+                                            <div class="price-gd-bottom">
+                                                <br>
+                                                <div class="price-selet">
+                                                    <h3> Available @ {{ room.G.name }}</h3>
+                                                    <button class="collapsible">Details</button>
+                                                    <div class="content"><br><br><br>
+                                                      <table>
+                                                          <tr style="background-color: #0f2453">
+                                                            <th style="color: white">Rooms Types</th>
+                                                            <th style="color: white">Number of Rooms Available</th>
+{#                                                            <th style="color: white">Number of Guests</th>#}
+{#                                                            <th style="color: white">Number of Rooms Required</th>#}
+                                                            <th style="color: white; margin-right: 1%">Book</th>
+                                                          </tr>
+
+                                                          {% for r in room.rooms %}
+                                                          <tr>
+                                                            <td>{{ r.type }}</td>
+                                                            <td>{{ r.count }}</td>
+                                                            <td><a class="form-control" href="{% url 'login' %}">Book</a></td>
+
+                                                          </tr>
+                                                              {% endfor %}
+                                                      </table>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><br><br><br>
+
+                                {% endif %}
+
+
+
+                            {% endfor %}
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+
+        <script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+
+
+</body>
+<html>
+-->
+
+
+<html>
+<head>
+</head>
+
+<body>
+				 <h3 class="title-w3-agileits title-black-wthree">Availability of Rooms</h3>
+
+                            {% for room in rooms %}
+
+                                {% if  room.no_rooms == 0 %}               
+                                       <h4 style="margin-top: -0%";>#{{ room.no_rooms }} Rooms </h4>
+                            
+                                        <h3><span>#</span> Sorry Rooms are Not Available @ {{ room.G.name }}</h3>
+                                        <a href="{% url 'home' %}" >Go Back</a>
+            
+                                       
+
+                                {% else %}       
+                                        <h4>#{{ room.no_rooms }} Rooms </h4>
+                                          
+                                        <h3> Available @ {{ room.G.name }}</h3>
+                                        <button class="collapsible">Details</button>
+                                                <tr>
+                                        <th style="color: white">Rooms Types</th>
+                                         <th style="color: white">Number of Rooms Available</th>
+                                        <th style="color: white; margin-right: 1%">Book</th>
+                                                          </tr>
+
+                                                          {% for r in room.rooms %}
+                                                          <tr>
+                                                            <td>{{ r.type }}</td>
+                                                            <td>{{ r.count }}</td>
+                                                           {# <td><a class="form-control" href="{% url 'login' %}">Book</a></td> #}
+
+                                                          </tr>
+                                                              {% endfor %}
+                                                      </table>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><br><br><br>
+
+                                {% endif %}
+
+
+
+                            {% endfor %}
+</body>
+
+
+</html>

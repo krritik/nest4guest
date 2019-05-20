@@ -1,0 +1,16 @@
+<html>
+
+<head>
+</head>
+
+<body>
+<form method="post" action="{% url 'feedback' %}" id="options_form">
+        {% csrf_token %}
+        <table border="1">
+		{{form}}
+		</table>
+        <button  type="submit"> submit </button>
+</form>        
+</body>
+
+</html>

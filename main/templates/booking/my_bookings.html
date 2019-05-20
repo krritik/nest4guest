@@ -1,0 +1,19 @@
+<html>
+<head>
+</head>
+
+
+<body>
+        {% for t in bookings %}
+                              <p> my-bookings </p>
+                        <p> {{ t.T.bookingID }} </p>
+                                    {% if t.T.status is True %}
+                                    <form method="get" action="{% url 'cancel' t.T.id %}">{% csrf_token %}
+                                        <br><button class="btn  btn-danger" type="submit" style="margin-left: 85%"><i class="glyphicon glyphicon-remove-sign"></i> Cancel Booking</button>
+                                     </form>
+                                    {% endif %}
+
+        {% endfor %}                            
+</body>
+</html>                                
+                                        

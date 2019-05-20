@@ -1,0 +1,77 @@
+
+<html>
+    <head>
+    </head>
+
+    <body>
+
+
+    <!--    
+				 <h3 class="title-w3-agileits title-black-wthree">Availability of Rooms</h3>
+                            {% for room in rooms %}
+
+                                {% if  room.no_rooms == 0 %}
+
+                                    <h4 style="margin-top: -170px";>#{{ room.no_rooms }} Rooms </h4>
+                                          
+                                    <h3><span>#</span> Sorry Rooms are Not Available @ {{ room.G.name }}</h3>
+                                    <a href="{% url 'index' %}" >Go Back</a>
+                                    
+                                      
+                                {% else %}
+
+                                  
+                                    <h4 >#{{ room.no_rooms }} Rooms </h4>
+                                    <h3><span>#</span> Available @ {{ room.G.name }}</h3>
+                                    <button class="collapsible">Details</button>
+                                    
+                                                      <table>
+                                                          <tr style="background-color: #0f2453">
+                                                            <th style="color: white">Rooms Types</th>
+                                                            <th style="color: white">Number of Rooms Available</th>                                                       
+                                                            <th style="color: white;margin-right: 1%">Book</th>
+                                                          </tr>
+
+                                                          {% for r in room.rooms %}
+                                                          <tr>
+                                                            <td>{{ r.type }}</td>
+                                                            <td>{{ r.count }}</td>
+                                                            <td><button class="collapsible" style="width: 90%; padding: 5% margin-right: 1%   ">Continue</button>
+                                                                <div class="content"><br><br><br>
+                                    
+                                                                    <form method="post"  action="{% url 'book_room_verify' room.G.id T.id r.type r.count%}">{% csrf_token %}
+                                                                        <label for="first_name"><h4> Rooms</h4></label>
+                                                                        
+                                                                        <br><label for="first_name"><h4>Guests</h4></label>
+                                                                        
+                                                                        <br><button class="book" style="width: 100%">Book</button><br><br>
+                                                                    </form>
+                                                               
+                                                            </td>
+
+                                                          </tr>
+                                                              {% endfor %}
+                                                      </table>
+                                                  
+
+                                {% endif %}
+
+
+
+                            {% endfor %}
+
+     -->
+
+            <form method="post"  action="{% url 'waiting_show' T.id %}">{% csrf_token %}
+                                     <label for="first_name"><h4> Rooms</h4></label>
+                                                                        
+                                                        <br><label for="first_name"><h4>Guests</h4></label>
+                                                                        
+                                                          <br><button class="book" style="width: 100%">Book</button><br><br>
+
+                                       >                    
+            </form>
+
+                    
+</body>
+</html>				
