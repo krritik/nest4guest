@@ -1,4 +1,4 @@
-# online-guest-house-booking-system
+# nest4guest
 This is a python based online guest house booking system
 ## Prerequisite/libraries used
   1. **Python3(3.6 +)**
