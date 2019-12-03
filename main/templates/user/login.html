@@ -57,6 +57,7 @@ body {
 .column.middle {
   width: 50%;
   text-align: center;
+  
 }
 
 /* Clear floats after the columns */
@@ -78,15 +79,40 @@ body {
   background-color: #EDBD4C;
   padding: 10px;
   text-align: center;
-  position: fixed;
+  position: absolute;
   height: 50px;
   bottom: 0px;
   left: 0px;
   right: 0px;
   margin-bottom: 0px;
 }
+table {
+  width: 100%;
+}
+
+th {
+  height: 60px;
+}
+
+
+.button {
+  background-color: #0f2453;
+  border: ;
+  color: white;
+  padding: 10px 40px;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color:#2853FE;
+}
+
+
 </style>
 </head>
+  
 <body>
 
 <div class="header">
@@ -103,19 +129,33 @@ body {
  </div>
   
   <div class="column middle">
+  <h2 style="color:#0f2453;border:2px solid black";>Login Details</h2>
    {#<form method="post" action="{% url 'index' %}" id="options_form"> #}
-    <form method="post" novalidate>
+    <form method="post" novalidate >
         {% csrf_token %}
-        <table border="1">
+        <table border="2",align="center">
         		{{form}}
 		</table>
-        <button  type="submit"> submit </button>
-	</form>
+        <button  class="button" type="submit"> Log In </button>
+	</form ><br><br><br><br><br><br><br><br>
+	  {% for message in messages %}
+		{% if message%}
 
-    
-  </div>
+                    <div class="alert alert-success">
+                        <a class="close" href="#" data-dismiss="alert">×</a>
+				
+					window.alert({{message}})
+		{%endif%}
+
+                    </div>
+            {% endfor %}
+	
+	
+	
+	
+</div>
   
-  <div class="column side">
+  <div class="column side" >
     <h2></h2>
     <p></p>
   </div>

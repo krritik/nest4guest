@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>FeedBack SuccessFull</title>
+<title>Cancellation_Successfull</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -69,9 +69,9 @@ body {
     
   .button {
   background-color: #0f2453;
-  border:;
+  border: none;
   color: white;
-  padding: 10px 40px;
+  padding: 5px 15px;
   text-align: center;
   font-size: 14px;
   cursor: pointer;
@@ -109,12 +109,12 @@ body {
 
 <div class="header">
   <h1>Online Guest House Booking Portal</h1>
-  <p style="font-family:times new roman;font-size:140%";>Thank You</p>
+  <p style="font-family:times new roman;font-size:140%";>Cancellation</p>
 
 </div>
 
 <div class="topnav">
-<a href="#">Home</a>
+<a href="/profile">Home</a>
 
 </div>
 
@@ -130,9 +130,37 @@ body {
   </div>
   
   <div class="column middle">
-  <h2>Thank You for your Feedback</h2><br><br><br>
- <button class="button" style="width: 50%" onclick="location.href='/profile'">Back to Home Page </button><br>
- </div>
+  <h2 align="center">Your Booking is Successfully Cancelled</h2>
+  <h3 align="center" style="color:#0f2453;border:2px solid #ddd">Cancellation Details:</h3>
+	<table border="2" align="center" >
+		<tr style="background-color: #0f2453">
+            <th style="color: white">Parameter</th>
+            <th style="color: white">Details</th>   
+		</tr>
+		<tr>
+			<td>Guest House :</td>
+			<td>{{reservation.guesthouse}}</td>
+		</tr>
+		<tr>
+			<td>Room Type :</td>
+			<td>{{reservation.room_type}}</td>
+		</tr>
+		
+		<tr>
+			<td>Check In :</td>
+			<td>{{reservation.start_date}}</td>
+		</tr>
+		<tr>
+			<td>Check Out :</td>
+			<td>{{reservation.end_date}}</td>
+		</tr>
+		<tr>
+			<td>Book Date :</td>
+			<td>{{reservation.booktime}}</td>
+		</tr>
+		</table>
+		<br><br><br>
+<button class="button" style="width: 50%" onclick="location.href='/my-bookings'">My Bookings </button><br>
   
   <div class="column side">
     <h2></h2>

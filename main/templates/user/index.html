@@ -1,5 +1,5 @@
 
-
+<!---
 <head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
@@ -55,4 +55,163 @@
   
   
   </body>
-  </html>
+  </html> -->
+
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Visitor Home Page</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+/* Style the header */
+.header {
+  background-color: #EDBD4C;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: right;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Create three unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+}
+
+/* Left and right column */
+.column.side {
+  width: 25%;
+}
+
+/* Middle column */
+.column.middle {
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column.side, .column.middle {
+    width: 100%;
+  }
+}
+
+/* Style the footer */
+.footer {
+  background-color: #EDBD4C;
+  padding: 10px;
+  text-align: center;
+  position: absolute;
+  height: 50px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin-bottom: 0px;
+}
+.button {
+  background-color: #0f2453;
+  border: ;
+  color: white;
+  padding: 10px 40px;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color:#2853FE;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  height: 50px;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Online Guest House Booking Portal</h1>
+  <h2>Welcome {{user.first_name}} {{user.last_name}}</h2>
+</div>
+
+<div class="topnav">
+  <a href="/logout">Log Out</a>
+  <a href="/password_change">Change Password</a>
+  <a href="/feedback">Feedback</a>
+  <a href="/my-bookings">My Bookings</a>
+  
+  
+</div>
+
+<div class="row">
+  <div class="column side">
+    <h2 style="font-family:times new roman;font-size:120%";>Profile Info :</h2>
+    <p style="font-family:arial;font-size:100%;line-height:1.2";>Username:        
+     {{user.username}}<br><br>
+     Name    : {{user.first_name}}  {{user.last_name}}<br><br>
+    <p></p>
+  </div>
+  
+  <div class="column middle" align="center">
+    <h2 style="color:#0f2453;border:2px solid #ddd";>Search Rooms</h2>
+    <p>
+       <form method="post" action="{% url 'index' %}" id="options_form"> 
+                        {{ form.as_p }}
+                        {% csrf_token %}
+                        <br><button align="center"  class="button"  type="submit"> Search </button>
+       </form>                 
+    </p>
+  </div>
+  
+  <div class="column side">
+    <h2></h2>
+    <p></p>
+  </div>
+</div>
+
+<div class="footer">
+  <p></p>
+</div>
+  
+</body>
+</html>

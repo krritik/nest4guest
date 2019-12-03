@@ -14,9 +14,18 @@ from . models import *
 import datetime
 
 
-def home(request):
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+
+
+#The major backend logic for online guest house booking system
+
+#Function to display the Homepage of the web system
+def home(request):      
     return render(request=request, template_name="home.html")
 
+
+#Function to Sign up new user
 def sign_up(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
@@ -26,12 +35,16 @@ def sign_up(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
+            messages.info(request, "Welcome to KGP")
             return redirect('index')
+        else:
+            messages.error(request, "Invalid Form Details")
     else:
         form = SignupForm()
     return render(request, 'user/sign-up.html', {'form': form})
 
-def login_request(request):
+#Function to Login in a new user
+def login_request(request):                     #request variable takes a GET or POST HTTP request
     if request.method == 'POST':
         form = AuthenticationForm(request=request, data=request.POST)
         if form.is_valid():
@@ -50,12 +63,36 @@ def login_request(request):
     form = AuthenticationForm()
     return render(request, "user/login.html", context={"form":form})  
 
-def logout_request(request):
+
+#Function to logout the user
+def logout_request(request):                        #request variable takes a GET or POST HTTP request
     logout(request)
     messages.info(request, "Logged out successfully!")
-    return redirect('home')  
+    return redirect('home') 
 
-def index(request):
+
+#Function to change the password of the user
+def change_password(request):                       #request variable takes a GET or POST HTTP request
+    user = request.user
+    if user.username and user.is_staff is False and user.is_superuser is False:
+        if request.method == 'POST':
+            form = PasswordChangeForm(request.user, request.POST)
+            if form.is_valid():         #here user details are verified from database
+                user = form.save()
+                update_session_auth_hash(request.user)
+                messages.success(request, 'Your password was successfully updated!')
+                return redirect('change_password')
+            else:
+                messages.error(request, 'Please correct the error below:')
+        else:
+            form = PasswordChangeForm(request.user)
+        return render(request, 'user/change_password.html', { 'form': form}) 
+    else:
+            messages.warning(request, 'You are not logged in. Please login') 
+            return redirect('home')               
+
+#Function to display the homepage of the user after login
+def index(request):                                 #request variable takes a GET or POST HTTP request
         user = request.user
         if user.username and user.is_staff is False and user.is_superuser is False:
             if request.method == 'POST':
@@ -79,10 +116,11 @@ def index(request):
                 form = ReservationForm(request.POST)
                 return render(request, "user/index.html", {'form' : form} )        
         else:
+            messages.warning(request, 'You are not logged in. Please login') 
             return redirect('home')
 
-
-def book(request, t):
+#Function to Book the Rooms according to the parameters and show available rooms
+def book(request, t):                               #request variable takes a GET or POST HTTP request
         user =request.user
         if user.username and user.is_staff is False and user.is_superuser is False:
             if request.method == 'POST':
@@ -103,26 +141,33 @@ def book(request, t):
                     
                 G = GuestHouse.objects.all()
                 context = []
+        
                 for g in G:
-                    rooms_available = Rooms.objects.exclude(pk__in = R).filter(guesthouse_id=g.id).values(
-                        'room_type').annotate(count=Count('room_type'))
+                    rooms_available = Rooms.objects.exclude(pk__in = R).filter(guesthouse_id=g.id)
                     no_rooms = 0
                     rooms = []
-                    for room in rooms_available:
-                        types  = str(room.get('room_type'))
-                        count = room.get('count')
-                        rooms.append({'type': types, 'count': count})      
-                        no_rooms = no_rooms + count
-                    context.append({ 'G': g, 'no_rooms': no_rooms, 'rooms': rooms})
-      
+
+                    for t in rooms_available:
+                        r = t.room_type
+                        flag = 0
+                        no_rooms = no_rooms+1  
+
+                        for i in rooms:
+                            if r in i.values():
+                                i['count'] = i['count']+1
+                                flag = 1
+                              
+                        if flag == 0:
+                            rooms.append({'type': r, 'count': 1 })
+                    context.append({ 'G': g, 'no_rooms': no_rooms, 'rooms': rooms})        
                 return render(request, 'booking/available.html', {'rooms': context, 'T': tt })
         else:
-            messages.warning(request, 'Page Not Found') 
+            messages.warning(request, 'You are not logged in. Please login') 
             redirect('home') 
   
 
-
-def query(request):
+#Function to Query the rooms accoording to the given parameters and show results
+def query(request):                                                 #request variable takes a GET or POST HTTP request
     if request.method == 'POST':
         form = ReservationForm(request.POST)
         if form.is_valid():
@@ -141,18 +186,26 @@ def query(request):
                         R.append(g.id)
             G = GuestHouse.objects.all()
             context = []
+           
             for g in G:
-                rooms_available = Rooms.objects.exclude(pk__in=R).filter(guesthouse_id=g.id).values(
-                    'room_type').annotate(count=Count('room_type'))
-                no_rooms = 0
-                rooms = []
-                for room in rooms_available:
-                    types = str(room.get('room_type'))
-                    count = room.get('count')
-                    rooms = {'type': types, 'count': count }
-                    no_rooms = no_rooms + count
-                context = {'G': g, 'no_rooms': no_rooms, 'rooms': rooms} 
-            return render(request, 'booking/availability.html', {'rooms': context})
+                    rooms_available = Rooms.objects.exclude(pk__in = R).filter(guesthouse_id=g.id)
+                    no_rooms = 0
+                    rooms = []
+
+                    for t in rooms_available:
+                        r = t.room_type
+                        flag = 0
+
+                        for i in rooms:
+                            if r in i.values():
+                                i['count'] = i['count']+1
+                                flag = 1
+                            no_rooms = no_rooms+1    
+                        if flag == 0:
+                            rooms.append({'type': r, 'count': 1 })
+                    context.append({ 'G': g, 'no_rooms': no_rooms, 'rooms': rooms})
+
+            return render(request, 'booking/available.html', {'rooms': context})
         else:
             messages.warning(request, 'Requested Page Not Found ')
             return redirect('home')
@@ -161,8 +214,8 @@ def query(request):
         return render(request, "booking/something.html", {'form' : form} )
 
 
-def book_room_verify(request, g, t, rtype, count):
-    #try:
+#Function to Confirm booking and update the database
+def book_room_verify(request, g, t, rtype, count):                              #request variable takes a GET or POST HTTP request
         user = request.user
         if user.username and user.is_staff is False and user.is_superuser is False:
             if request.method == 'POST':
@@ -182,11 +235,21 @@ def book_room_verify(request, g, t, rtype, count):
                     f = d.rooms_allocated
                     if f.id not in R:
                             R.append(f.id)
-                R = Rooms.objects.filter(guesthouse=t.guesthouse).filter(room_type=rtype)[0]
+                R = Rooms.objects.filter(guesthouse=t.guesthouse).filter(room_type=rtype)
 
+                #res = Reservation.objects.all()
 
-                newreservation = Reservation()
-                newreservation.bookingID = str(R.roomID)+str(user.username)+str(datetime.date.today())    
+                rooms = []
+                for re in T:
+                    rooms.append(re.rooms_allocated)
+
+                for rd in R:
+                    if rd not in rooms:
+                        xyz = rd
+                        break    
+
+                newreservation = Reservation()  #here reservation is added  to database on confirmation
+                newreservation.bookingID = str(xyz.roomID)+str(user.username)+str(datetime.date.today())    
                 newreservation.start_date = start_date
                 newreservation.end_date = end_date
                 newreservation.user_booked = user
@@ -194,16 +257,16 @@ def book_room_verify(request, g, t, rtype, count):
                 newreservation.guesthouse = t.guesthouse
                 newreservation.status = True
                 newreservation.room_type = rtype
-                newreservation.rooms_allocated = R
+                newreservation.rooms_allocated = xyz
                 newreservation.save()
 
 
-                newpayment = Payment()
-                newpayment.paymentID = str(newreservation.bookingID)+str(R.price) 		
-                newpayment.amount = R.price
+                newpayment = Payment()  #payment is generated on confirm reservation
+                newpayment.paymentID = str(newreservation.bookingID)+str(xyz.price*(0.2)) 		
+                newpayment.amount = (xyz.price * 0.2) 
                 newpayment.reservation = newreservation
                 newpayment.user_booked = user
-                newpayment.payment_time = datetime.time.today()  
+                newpayment.payment_time = datetime.date.today()  
                 newpayment.save()
 
                 return render(request, "booking/book_successful.html", {'reservation' : newreservation}) 
@@ -213,75 +276,104 @@ def book_room_verify(request, g, t, rtype, count):
                 #return redirect('home')
                 return redirect('index')
         else:
-            messages.warning(request, 'Requested Page Not Found ')
+            messages.warning(request, 'You are not logged in. Please login')
             return redirect('home')
-   # except Exception as e:
-    #    messages.warning(request, 'Something Went Wrong. Please Try agin')
-     #   return redirect('index')
 
 
-
-def cancel(request, id):
-    try:
-        if request.method == 'POST':
-            return redirect('my_bookings')
-        else:
+#Function to cancel the reserved rooms
+def cancel(request, id):                                    #request variable takes a GET or POST HTTP request
             user = request.user
             if user.username and user.is_staff is False and user.is_superuser is False:
 
                 reservation = Reservation.objects.get(id = id)
-                
-                for waiting_one in WaitingOn:
+                room_1 = reservation.rooms_allocated
+                reservation.status = False
+                reservation.save()
+                flag = 0
+            
+
+
+                """ for waiting_one in WaitingOn.objects.all():
                     start_date = waiting_one.start_date 
                     end_date = waiting_one.end_date
+                    res_3 = waiting_one.resID
 
                     T = Reservation.objects.filter(
                     Q(start_date__range=(start_date, end_date)) | Q(end_date__range=(start_date, end_date))).filter(status=True).filter(waiting=False)
 
-                    if(len(T) > 1):
-                        continue
-                    elif(len(T) == 1):
-                        if(T == reservation):
-                            new_reservtaion = waiting_one.resID
+                    for r in T:
+                        if(r == reservation):
+                            new_reservation = waiting_one.resID
                             new_reservation.waiting = False
-                            new_reservtaion.save()
+                            new_reservation.rooms_allocated = reservation.rooms_allocated
+                            new_reservation.save()
+                            waiting_one.delete()
+                            flag = 1
+                            break
+
+                    if flag == 1:
+                        break  
+                """
+
+
+                for waiting_one in WaitingOn.objects.all():
+                    start_date = waiting_one.start_date 
+                    end_date = waiting_one.end_date
+                    res_3 = waiting_one.resID
+
+                    T = Reservation.objects.filter(
+                    Q(start_date__range=(start_date, end_date)) | Q(end_date__range=(start_date, end_date))).filter(status=True).filter(waiting=False).filter(room_type = res_3.room_type).filter(guesthouse = res_3.guesthouse)
+
+                        
+                    R = Rooms.objects.filter(guesthouse=res_3.guesthouse).filter(room_type=res_3.room_type)
+
+                    rooms = []
+                    for re in T:
+                        f = re.rooms_allocated
+                        if f not in rooms:
+                            rooms.append(f)
+
+                    for room_of in R:
+                        if room_of not in rooms:
+                            xyz = room_of
+                            flag = 1
+
+                            res_3.rooms_allocated = xyz
+                            res_3.waiting = False
+                            res_3.save()
                             waiting_one.delete()
                             break
-                    else:       
-                        continue
 
-                
-                reservation.status = False
-                reservation.save()
 
-                newrefund = Refund()
-                newrefund.refundID = str(newreservation.bookingID)+str(R.roomID)
-                newrefund.reservation = reservation
-                newrefund.amount = reservation.room_allocated.price
-                newrefund.user = user
-                newrefund.refund_time = datetime.date.today()
 
-                payments = reservation.payments.objects.all()
-                newrefund.payment = payments.filter(reservation = reservation.id)
-                
-                newrefund.save()
-            
+                    if flag == 1:
+                        break            
     
 
-                    
+                newrefund = Refund()        #on cancellation of confirmed reservation, refund is generated automatically
+                newrefund.refundID = str(reservation.bookingID)+str(user.username)
+                newrefund.reservation = reservation
+                newrefund.amount = reservation.rooms_allocated.price*(0.2)
+                newrefund.user_booked = user
+                newrefund.refund_time = datetime.date.today()
+
+                payments = reservation.payments.all()
+
+                for p in payments:
+                    res =p.reservation
+                    if(res.id == id):
+                        newrefund.payment = p
                 
+                newrefund.save()      
 
                 messages.warning(request, 'Your Booking with Booking number  ' + str(reservation.bookingID) + ' is cancelled Succesfully')
-                return redirect('my_bookings')
+                return render(request,"booking/cancel_successful.html", {'reservation' : reservation })
             else:
                 messages.warning(request, 'you are not logged in or have no access')
                 return redirect('login')
-    except Exception as e:
-        messages.warning(request, str(e))
-        return redirect('home')     
 
-def my_bookings(request):
-   # try:
+#Function to show all the Booking of the Logged in user 
+def my_bookings(request):                                               #request variable takes a GET or POST HTTP request
         user = request.user
         if user.username and user.is_staff is False and user.is_superuser is False:
             T = Reservation.objects.filter(user_booked=user).order_by('-booktime').filter(status=True)
@@ -292,17 +384,14 @@ def my_bookings(request):
                 #d = GuestDetails.objects.filter(transaction=t.id)
                 r = t.rooms_allocated
                 bookings.append({'T': t , 'G': g, 'R':r})
-            context = {'bookings': bookings, 't': T}
+            context = {'bookings': bookings, 'reservation': T}
             return render(request, 'booking/my_bookings.html', context)
         else:
             messages.warning(request, 'You are not authorized to acces the requested page. Please Login ')
             return redirect('home')
-    #except Exception as e:
-    #    messages.warning(request, str(e))
-#return redirect('error')
-
-
-def waiting_show(request, t):
+    
+#Function to provide booking option for the Waiting queue
+def waiting_show(request, t):                           #request variable takes a GET or POST HTTP request
         user =request.user
         if user.username and user.is_staff is False and user.is_superuser is False:
             if request.method == 'POST':
@@ -317,7 +406,7 @@ def waiting_show(request, t):
 
                 for g in G:
                     new_waiting = Reservation.objects.filter(
-                                Q(start_date__range =(start_date, end_date)) | Q(end_date__range =(start_date, end_date))).filter(waiting=True).filter(status=True).filter(guesthouse=g)
+                                Q(start_date__range =(start_date, end_date)) | Q(end_date__range =(start_date, end_date))).filter(status=True).filter(guesthouse=g)
 
                     rooms = []
                     for t in new_waiting:
@@ -330,29 +419,19 @@ def waiting_show(request, t):
                                 flag = 1
                             
                         if flag == 0:
-                            rooms.append({'type': R,' count': 0 })
+                            rooms.append({'type': R, 'count': 1 })
 
-                    room_left = Rooms.objects.filter(guesthouse = g)
-
-                    for room_3 in room_left:
-                        R = room_3.room_type
-                        flag = 0
-                        for i in rooms:
-                            if R in i.values():
-                                flag = 1
-
-                        if flag == 0:       
-                            rooms.append({'type': room_3.room_type, 'count': 0})
-
+             
                     context.append({'G' : g, 'room2' : rooms})    
       
                 return render(request, 'booking/waiting_show.html', {'rooms': context, 'T': tt })
         else:
-            messages.warning(request, 'Page Not Found') 
+            messages.warning(request, 'You are not logged in. Please login') 
             redirect('home') 
 
 
-def waiting(request, g, t, rtype):
+#Function to put the logged in user into the queue
+def waiting(request, g, t, rtype):                                      #request variable takes a GET or POST HTTP request
         user = request.user
         if user.username and user.is_staff is False and user.is_superuser is False:
             if request.method == 'POST':
@@ -362,36 +441,49 @@ def waiting(request, g, t, rtype):
 
                 
                 
-                newreservation = Reservation()
+                newreservation = Reservation()      #here a waiting reservation is created
                 newreservation.bookingID = str(t.guesthouse.code)+str(t.id)    
                 newreservation.start_date = t.start_date
                 newreservation.end_date = t.end_date
                 newreservation.user_booked = user
+                newreservation.room_type = rtype
                 newreservation.booktime = datetime.date.today()
                 newreservation.guesthouse = t.guesthouse
                 newreservation.status = True
                 newreservation.waiting = True
                 newreservation.save()
 
+                R = Rooms.objects.filter(guesthouse = t.guesthouse).filter(room_type = rtype)
 
-                newwaiting = WaitingOn()
+
+                newpayment = Payment()  #payment is done on waiting reservation is confirmed
+                newpayment.paymentID = str(newreservation.bookingID)+str(R[0].price*(0.2)) 		
+                newpayment.amount = R[0].price * (0.2) 
+                newpayment.reservation = newreservation
+                newpayment.user_booked = user
+                newpayment.payment_time = datetime.date.today()  
+                newpayment.save()
+
+
+                newwaiting = WaitingOn() #here reservation is added to waiting queue so that on cancellation of any reservation, it gets confirmwed automatically
                 newwaiting.resID = newreservation
                 newwaiting.date_booked = newreservation.booktime
                 newwaiting.start_date = newreservation.start_date
                 newwaiting.end_date = newreservation.end_date
                 newwaiting.save()
 
-                return render(request, "booking/waiting_successful.html", {'reservation' : newreservation, 'waiting': newwaiting }) 
+                return render(request, "booking/waiting_successful.html", {'reservation' : newreservation, 'waiting': newwaiting, 'payment':newpayment }) 
                 
             else:
                 messages.warning(request, 'Requested Page Not Found ')
-                #return redirect('home')
                 return redirect('index')
         else:
-            messages.warning(request, 'Requested Page Not Found ')
+            messages.warning(request, 'You are not logged in. Please login')
             return redirect('home')
 
-def feedback(request):
+
+#Function to provide form to the user to fill in the feedback
+def feedback(request):                                      #request variable takes a GET or POST HTTP request
     user = request.user
     if user.username and user.is_staff is False and user.is_superuser is False:
         if request.method == 'POST':   
@@ -409,10 +501,62 @@ def feedback(request):
                 return render(request, "booking/feedback_successful.html")
             else:
                 messages.error(request, "Invalid form details")
-        else:                
-            form = FeedbackForm()
-            return render(request, "booking/feedback.html", context={"form":form})                
+    
+        form = FeedbackForm()
+        return render(request, "booking/feedback.html", context={"form":form})                
+    
     else:
-        messages.warning(request, 'Page Not Found') 
+        messages.warning(request, 'You are not logged in. Please login') 
         redirect('home') 
+
+#Function to cancel the waitlisted reservations
+def cancelwaiting(request, id):                                             #request variable takes a GET or POST HTTP request
+            user = request.user
+            if user.username and user.is_staff is False and user.is_superuser is False:
+
+                reservation = Reservation.objects.get(id = id)
+                reservation.status = False
+                reservation.save()
+                
+            
+    
+
+                newrefund = Refund()            # here refund is done automatically on cancellation of reservation
+                newrefund.refundID = str(reservation.bookingID)+str(user.username)
+                newrefund.reservation = reservation
+                newrefund.user_booked = user
+                newrefund.refund_time = datetime.date.today()
+
+                payments = reservation.payments.all()
+
+                for p in payments:
+                    res = p.reservation
+                    if(res.id == id):
+                        newrefund.payment = p
+                        newrefund.amount = p.amount
+                
+                newrefund.save()      
+
+                messages.warning(request, 'Your Booking with Booking number  ' + str(reservation.bookingID) + ' is cancelled Succesfully')
+                return render(request,"booking/cancel_successful.html", {'reservation' : reservation })
+
+            else:
+                messages.warning(request, 'you are not logged in or have no access')
+                return redirect('login')
    
+#Function to provide room details
+def roomdetails(request):                                           #request variable takes a GET or POST HTTP request
+        user = request.user
+        if user.username and user.is_staff is False and user.is_superuser is False:
+            if request == 'POST':
+                return render(request, "booking/roomdetails.html")
+            else:
+                messages.warning(request, 'something went wrong')
+                return redirect('index')
+        else:  
+            messages.warning(request, 'you are not logged in or have no access')
+            return redirect('login')          
+
+
+
+

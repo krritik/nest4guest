@@ -1,12 +1,12 @@
 
-<html>
+<!--<html>
     <head>
     </head>
 
     <body>
 
 
-    <!--    
+     
 				 <h3 class="title-w3-agileits title-black-wthree">Availability of Rooms</h3>
                             {% for room in rooms %}
 
@@ -60,7 +60,7 @@
 
                             {% endfor %}
 
-     -->
+
 
             <form method="post"  action="{% url 'waiting_show' T.id %}">{% csrf_token %}
                                      <label for="first_name"><h4> Rooms</h4></label>
@@ -74,4 +74,223 @@
 
                     
 </body>
-</html>				
+</html>				-->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Room_Availability</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+/* Style the header */
+.header {
+  background-color: #EDBD4C;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: right;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Create three unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+}
+
+/* Left and right column */
+.column.side {
+  width: 25%;
+}
+
+/* Middle column */
+.column.middle {
+  width: 50%;
+  text-align: center;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+  }
+  
+    
+  .button {
+  background-color: #0f2453;
+  border: none;
+  color: white;
+  padding: 5px 15px;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color:#2853FE;
+}
+
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column.side, .column.middle {
+    width: 100%;
+  }
+}
+
+/* Style the footer */
+.footer {
+  background-color: #EDBD4C;
+  padding: 10px;
+  text-align: center;
+  position: relative;
+  height: 50px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin-bottom: 0px;
+  
+
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Online Guest House Booking Portal</h1>
+  <p style="font-family:times new roman;font-size:140%";>Room_Details</p>
+
+</div>
+
+<div class="topnav">
+<a href="/profile">Home</a>
+</div>
+
+<div class="row">
+  <div class="column side">
+    <h2 style="font-family:times new roman;font-size:120%";>USER INFO</h2>
+    <p style="font-family:arial;font-size:100%;line-height:1.2";>Username:        
+     {{user.username}}<br><br>
+    Name    : {{user.first_name}}  {{user.last_name}}<br>
+    </p>
+ 
+
+  </div>
+  
+  <div class="column middle">
+  <h3 style="color:#0f2453;border:2px solid #ddd">Availability of Rooms</h3>
+                            {% for room in rooms %}
+
+                                {% if  room.no_rooms == 0 %}
+									<h3>Guest House : {{ room.G.name }}</h3>
+                                    <h4>Available Rooms = {{ room.no_rooms }} </h4>
+                                          
+                                    <h3><span>#</span> Sorry Rooms are Not Available at {{ room.G.name }}</h3>
+                                   <br>
+                                   <br>
+                                   <!--<td><br><button class="button" style="width: 100%" onclick="location.href=">Book</button><br>
+                                    -->
+                                    
+                                      
+                                {% else %}
+
+                                  
+                                    <h4 >Total Rooms Available : {{ room.no_rooms }} </h4>
+
+                                    <h3>Guest House : {{ room.G.name }}</h3>
+                               
+                                    
+                                                      <table border="2" align="center">
+                                                          <tr style="background-color: #0f2453">
+                                                            <th style="color: white">Rooms Types</th>
+                                                            <th style="color: white">Number of Rooms Available</th>                                                       
+                                                            <th style="color: white">Book</th>
+                                                            <th style="color: white;margin-right: 1%">Details</th>
+                                                          </tr>
+
+                                                          {% for r in room.rooms %}
+                                                          <tr>
+                                                            <td>{{ r.type }}</td>
+                                                            <td>{{ r.count }}</td>
+                                                      <!--      <td><br><button class="button" style="width: 100%" action="{% url 'book_room_verify' room.G.id T.id r.type r.count%}">Book</button><br>
+                   </td>-->
+                                                            <td>
+                                                            <form method="post"  action="{% url 'book_room_verify' room.G.id T.id r.type r.count%}">
+															{% csrf_token %}
+                                                                        
+                                                                        <br><button class="button" style="width: 100%">Book</button><br><br>
+                                                                    </form>
+                                                            </td>
+                   <!--<td><br><button
+class="button" style="width: 100%" onclick="location.href=">Details</button><br>
+					</td>-->
+                                                        <td>
+                                                           <button class="button" style="width: 50%" onclick="location.href='/roomdetails'">Details </button><br>
+                                                            </td>
+                   
+
+                                                          </tr>
+                                                              {% endfor %}
+                                                      </table>
+                                                  
+
+                                {% endif %}
+                            {% endfor %}
+  
+            <br><br><br>
+            <h3> If rooms are not Available continue here for waiting </h3>
+      <form method="get"  action="{% url 'waiting_show' T.id %}">
+                        {% csrf_token %}
+                        <br><button class="button" >Waiting</button><br><br>
+      </form>
+
+  
+  
+
+ 
+ 
+ </div>
+  
+  <div class="column side">
+    <h2></h2>
+    <p></p>
+  </div>
+</div>
+
+<div class="footer">
+  <p></p>
+</div>
+  
+</body>
+</html>

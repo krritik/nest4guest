@@ -78,13 +78,35 @@ body {
   background-color: #EDBD4C;
   padding: 10px;
   text-align: center;
-  position: fixed;
+  position: absolute;
   height: 50px;
   bottom: 0px;
   left: 0px;
   right: 0px;
   margin-bottom: 0px;
 }
+.button {
+  background-color: #0f2453;
+  border: ;
+  color: white;
+  padding: 10px 40px;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color:#2853FE;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  height: 50px;
+}
+
 </style>
 </head>
 <body>
@@ -103,12 +125,13 @@ body {
  </div>
   
   <div class="column middle">
-   <form method="post" >
+  <h2 style="color:#0f2453;border:2px solid black";>Profile Info</h2>
+   <form method="post" align="center" >
         {% csrf_token %}
         <table border="1">
 		{{form}}
 		</table>
-        <button  type="submit"> submit </button>
+        <button  class="button" type="submit">Sign Up </button>
 	</form>
 
     

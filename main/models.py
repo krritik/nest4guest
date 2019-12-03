@@ -33,7 +33,7 @@ class Rooms(models.Model):
     	return self.roomID
 
 class Reservation(models.Model):
-    bookingID = models.CharField( default=None, max_length=30, unique=True)
+    bookingID = models.CharField( default=None, max_length=30)
     start_date = models.DateTimeField(default=None, null=True)
     end_date = models.DateTimeField(default=None, null=True)
     
@@ -139,8 +139,8 @@ class WaitingOn(models.Model):
     end_date = models.DateField(null=True, blank=True)  
 	
 	
-#class Message(models.Model)
-#	messageID = models.CharField(default=None, primary_key=True)
-#	admin = models.ForeignKey('Admin')
-#	staff = models.ForeignKey('Staff', on_delete=models.CASCADE)
-#	time = models.DateTimeField(default=timezone.now, null=False)
+#class Message(models.Model):
+#	messageID = models.CharField(null=True)
+#	staff = models.ForeignKey(User, on_delete=models.CASCADE)
+#    message = models.TextField( default=None)
+#    time = models.DateTimeField(default=timezone.now, null=True)
