@@ -1,5 +1,5 @@
-# nest4guest
-This is a python based online guest house booking system
+f# nest4guest
+This is a python based online guest house booking portal. The app is a one time solution that makes it easier for users to query and book rooms, review status and cancel booking.  Included automatic confirmation of next booking from waiting list on cancellation of a booking
 ## Prerequisite/libraries used
   1. **Python3(3.6 +)**
   2. **Django(2.1 +)** to install django, open terminal and type pip3 install Django.    
@@ -16,4 +16,4 @@ This code was written using Python 3.6.7 and Django 2.1.7.
 
 ## Test Version
 
-	One can see the demo version of app deployed on heroku. For that just visit the following url "https://nest4guest.herokuapp.com/home/"
+  One can see the demo version of app deployed on heroku. For that just visit the following url   https://nest4guest.herokuapp.com/home/
