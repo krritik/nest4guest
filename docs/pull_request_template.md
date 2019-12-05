@@ -5,20 +5,9 @@
 - [ ] I have deployed locally to see if issue is fixed
 - [ ] I have commented my code, particularly in hard-to-understand areas
 
-## Pull request type
-
 <!-- Please do not submit updates to dependencies unless it fixes an issue. --> 
 
 <!-- Please try to limit your pull request to one type, submit multiple pull requests if needed. --> 
-
-Please check the type of change your PR introduces:
-- [ ] Bugfix
-- [ ] Feature
-- [ ] Code style update (formatting, renaming)
-- [ ] Refactoring (no functional changes, no api changes)
-- [ ] Documentation content changes
-- [ ] Other (please describe): 
-
 
 ## What is the current behavior?
 <!-- Please describe the current behavior that you are modifying, or link to a relevant issue. -->
