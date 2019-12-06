@@ -4,24 +4,5 @@
 - [ ] I have performed a self-review of my own code
 - [ ] I have deployed locally to see if issue is fixed
 - [ ] I have commented my code, particularly in hard-to-understand areas
-
-<!-- Please do not submit updates to dependencies unless it fixes an issue. --> 
-
-<!-- Please try to limit your pull request to one type, submit multiple pull requests if needed. --> 
-
-## What is the current behavior?
-<!-- Please describe the current behavior that you are modifying, or link to a relevant issue. -->
-
-Issue Number: N/A
-
-
-## What is the new behavior?
-<!-- Please describe the behavior or changes that are being added by this PR. -->
-
--
--
--
-
-## Other information
-
-<!-- Any other information that is important to this PR such as screenshots of how the component looks before and after the change. -->
+- [ ] Assigned issues to current PR
+- [ ] Assigned PR to current issues it resolved or create new issue related to it
