@@ -42,6 +42,34 @@ def sign_up(request):
     else:
         form = SignupForm()
     return render(request, 'user/sign-up.html', {'form': form})
+# Fuction to edit User details
+def edit_user(request):
+    user=get_object_or_404(User,pk=request.user.pk)
+    if request.method == 'POST':
+       
+       form=UserEditForm(request.POST)
+       if form.is_valid():
+      
+          user.username=form.cleaned_data.get('username')
+          user.first_name=  form.cleaned_data.get('first_name')
+          user.last_name=form.cleaned_data.get('last_name')
+          user.email=form.cleaned_data.get('email')
+          user.save()
+          messages.info( request,"User Details Updated Succesfully")
+          return redirect("index")
+       else:
+            messages.error(request, "Invalid Form Details")
+             
+    else:
+ 
+        form =UserEditForm(initial={
+            'username':user.username,
+            'first_name':user.first_name,
+            'last_name':user.last_name,
+            'email':user.email
+        })
+    return render(request ,'user/user-edit.html',{'form':form})
+    
 
 #Function to Login in a new user
 def login_request(request):                     #request variable takes a GET or POST HTTP request

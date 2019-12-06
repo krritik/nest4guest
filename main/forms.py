@@ -11,7 +11,12 @@ class SignupForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
-
+class UserEditForm(forms.Form):
+    user_name=models.CharField(max_length=20)
+    first_name=forms.CharField(max_length=30)
+    last_name=models.CharField(max_length=30)
+    email=forms.EmailField(max_length=200)      
+   
 class DateInput(forms.DateInput):
     input_type = 'date'
 
