@@ -17,6 +17,8 @@ import datetime
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 
+from django.contrib.auth.models import Group
+
 
 #The major backend logic for online guest house booking system
 
@@ -53,6 +55,10 @@ def login_request(request):                     #request variable takes a GET or
             user = authenticate(username= username, password=password)
 
             if user is not None:
+                # Checking if a user if a staff
+                if user.is_staff and not user.groups.filter(name='Staff').exists():
+                    group = Group.objects.get(name='Staff')
+                    user.groups.add(group) 
                 login(request, user)
                 messages.info(request, f"You are now logged in as {username}")
                 return redirect('index')
