@@ -55,7 +55,6 @@ class Reservation(models.Model):
     booktime = models.DateField(null=False)
                 
     class Meta:
-        verbose_name_plural='Reservation'
         db_table = 'OGHBS_Reservation'
         ordering = ['-booktime']
                 
