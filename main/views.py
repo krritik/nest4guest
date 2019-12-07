@@ -44,6 +44,8 @@ def sign_up(request):
     return render(request, 'user/sign-up.html', {'form': form})
 # Fuction to edit User details
 def edit_user(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
     user=get_object_or_404(User,pk=request.user.pk)
     if request.method == 'POST':
        
