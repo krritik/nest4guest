@@ -52,7 +52,7 @@ def edit_user(request):
        form=UserEditForm(request.POST)
        if form.is_valid():
       
-          user.username=form.cleaned_data.get('username')
+          
           user.first_name=  form.cleaned_data.get('first_name')
           user.last_name=form.cleaned_data.get('last_name')
           user.email=form.cleaned_data.get('email')

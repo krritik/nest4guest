@@ -16,7 +16,7 @@ class SignupForm(UserCreationForm):
 
 
 class UserEditForm(forms.Form):
-    username=forms.CharField(max_length=20)
+
     first_name = forms.CharField(max_length=30)
     last_name = forms.CharField(max_length=30)
     email = forms.EmailField(max_length=200)
