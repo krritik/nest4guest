@@ -188,7 +188,8 @@ th {
     <h2 style="font-family:times new roman;font-size:120%";>Profile Info :</h2>
     <p style="font-family:arial;font-size:100%;line-height:1.2";>Username:        
      {{user.username}}<br><br>
-     Name    : {{user.first_name}}  {{user.last_name}}<br><br>
+     Name    : {{user.first_name}}  {{user.last_name}}<br><br> <br><br>
+     <a align="center" class="button" href="{% url 'edit-user' %}"> Edit</a>
     <p></p>
   </div>
   

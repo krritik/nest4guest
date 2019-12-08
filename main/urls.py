@@ -23,6 +23,7 @@ urlpatterns = [
 
     path('password_change/', auth_views.PasswordChangeView.as_view(), {'template_name': 'user/change_password.html'},name='password_change'),
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(),name='password_change_done'),
+    path('edituser/',views.edit_user,name='edit-user'),
 
 
     path('roomdetails/', views.roomdetails, name = 'roomdetails'),
