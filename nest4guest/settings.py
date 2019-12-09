@@ -138,7 +138,7 @@ DATABASES['default'].update(prod_db)
 # STRIPE PAYMENT API KEYS
 import os
 from dotenv import load_dotenv
-load_dotenv(dotenv_path='stripe.env')
+load_dotenv(dotenv_path='.env')
 
 STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
 STRIPE_PUBLISHABLE_KEY = os.getenv("STRIPE_PUBLISHABLE_KEY")
