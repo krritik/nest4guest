@@ -140,18 +140,11 @@ th {
 	</form ><br><br><br><br><br><br><br><br>
 	  {% for message in messages %}
 		{% if message%}
-
-                    <div class="alert alert-success">
-                        <a class="close" href="#" data-dismiss="alert">×</a>
-				
-					window.alert({{message}})
+    <div class="alert alert-success">
+				<h4 style="color:red"><b>{{message}}</b></h4>
 		{%endif%}
-
-                    </div>
-            {% endfor %}
-	
-	
-	
+    </div>
+    {% endfor %}
 	
 </div>
   
