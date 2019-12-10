@@ -2,8 +2,15 @@
 <html lang="en">
 <head>
 <title>User_Signup</title>
-<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+ <!-- Main css -->
+    
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 <style>
 * {
   box-sizing: border-box;
@@ -111,13 +118,13 @@ th {
 </head>
 <body>
 
-<div class="header">
+<div class="header ">
   <h1>Online Guest House Booking Portal</h1>
-  <p style="font-family:times new roman;font-size:140%";>SIGN UP</p>
+  
 
 </div>
 
-<div class="topnav">
+<div class="topnav"><p class="text-white" style="font-family:times new roman;font-size:140%;margin-inline: 20px;text-align: center;";>SIGN UP</p>
 </div>
 
 <div class="row">
@@ -126,7 +133,7 @@ th {
   
   <div class="column middle">
   <h2 style="color:#0f2453;border:2px solid black";>Profile Info</h2>
-   <form method="post" align="center" >
+   <form  method="post" class="form-group" align="center" >
         {% csrf_token %}
         <table border="1">
 		{{form}}
@@ -143,10 +150,8 @@ th {
   </div>
 </div>
 
-<div class="footer">
-  <p></p>
-</div>
-  
+<div class="jumbotron text-center" style="margin-bottom:0; background-color:  #EDBD4C;">
+    <p>Footer</p>
+  </div>
 </body>
 </html>
-s
