@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Payment</title>
+    </head>
+    <body>
+
+<h2>Book Room for Rs. 500</h2>
+<form action="{% url 'book_room_verify' g t rtype count %}" method="post">
+  {% csrf_token %}
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="{{ key }}"
+          data-description="Nest4Guest Payment"
+          data-amount="500"
+          data-locale="auto"></script>
+</form>
+
+    </body>
+</html>
