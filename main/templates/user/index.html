@@ -210,6 +210,14 @@ th {
   </div>
 </div>
 
+<div>
+  {% if messages %}
+  {% for message in messages %}
+  <h4 align='center' style="color:red">*{{message}}</h4>
+  {% endfor %}
+  {% endif %}
+</div>
+
 <div class="footer">
   <p></p>
 </div>
