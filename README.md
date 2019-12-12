@@ -19,4 +19,4 @@ This code was written using Python3 and Django2.
 ## Test Version
 
   One can see the demo version of app deployed on heroku. 
-  For that just visit the following url : https://nest4guest.herokuapp.com/home/
+  For that just visit the following url : https://nest4guest.herokuapp.com/
