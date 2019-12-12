@@ -83,6 +83,10 @@ def login_request(request):                     #request variable takes a GET or
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             user = authenticate(username= username, password=password)
+            
+            if user.is_staff or user.is_superuser:
+                messages.error(request, "Visitor's login only!")
+                return redirect('login')
 
             if user is not None:
                 # Checking if a user if a staff
