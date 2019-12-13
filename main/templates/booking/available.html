@@ -209,7 +209,7 @@ body {
   </div>
   
   <div class="column middle">
-  <h3 style="color:#0f2453;border:2px solid #ddd">Availability of Rooms</h3>
+  <h3 style="color:#532a0f;border:2px solid #ddd">Availability of Rooms</h3>
                             {% for room in rooms %}
 
                                 {% if  room.no_rooms == 0 %}
@@ -246,7 +246,8 @@ body {
                                                       <!--      <td><br><button class="button" style="width: 100%" action="{% url 'book_room_verify' room.G.id T.id r.type r.count%}">Book</button><br>
                    </td>-->
                                                             <td>
-                                                            <form method="post"  action="{% url 'book_room_verify' room.G.id T.id r.type r.count%}">
+                                                            <!-- <form method="post"  action="{% url 'book_room_verify' room.G.id T.id r.type r.count%}"> -->
+                                                              <form method='post' action='{% url "payment" room.G.id T.id r.type r.count %}'>
 															{% csrf_token %}
                                                                         
                                                                         <br><button class="button" style="width: 100%">Book</button><br><br>
