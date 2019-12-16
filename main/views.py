@@ -26,6 +26,9 @@ from django.contrib.auth.models import Group
 def home(request):      
     return render(request=request, template_name="home.html")
 
+#Function to display the about page of the web system
+def about(request):
+    return render(request=request, template_name="about.html")
 
 #Function to Sign up new user
 def sign_up(request):
