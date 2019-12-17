@@ -1,0 +1,15 @@
+{% load static %}
+<footer class="footer">
+    <div class="row">
+        <div class="col-1-of-2">
+            <div class="footer__navigation">
+                <ul class="footer__list">
+            <li class="footer__item"><a href="{% url 'index' %}" class="footer__link">Home Page</a></li>
+            <li class="footer__item"><a href="{% url 'logout' %}" class="footer__link">Logout</a></li>
+            <li class="footer__item"><a href="{% url 'my_bookings' %}" class="footer__link">My Bookings</a></li>
+            <li class="footer__item"><a href="{% url 'feedback' %}" class="footer__link">Feedback</a></li>
+</ul>
+            </div>
+        </div>
+        </div>
+</footer>

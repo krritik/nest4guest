@@ -1,13 +1,15 @@
-<html>
 
-<head>
-</head>
+{% extends 'base.html' %} 
 
-<body>
-</body>
+{% load static %}
+
+
+{% block content %}
+
      <form method="post" action="{% url 'index' %}" id="options_form">
         {% csrf_token %}
 		{{form}}
-		</table>
-        <button  type="submit"> submit </button>
-</html>
+		
+        <button class="button" type="submit"> submit </button>
+
+{% endblock %}

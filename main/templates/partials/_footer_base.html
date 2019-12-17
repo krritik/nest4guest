@@ -1,0 +1,16 @@
+{% load static %}
+<footer class="footer">
+    <div class="row">
+        <div class="col-1-of-2">
+            <div class="footer__navigation">
+                <ul class="footer__list">
+            <li class="footer__item"><a href="{% url 'home' %}" class="footer__link">Home</a></li>
+            <li class="footer__item"><a href="{% url 'about' %}" class="footer__link">About Us</a></li>
+            <li class="footer__item"><a href="{% url 'login' %}" class="footer__link">Login</a></li>
+            <li class="footer__item"><a href="{% url 'signup' %}" class="footer__link">Signin</a></li>
+            <li class="footer__item"><a href="{% url 'admin:index' %}" class="footer__link">Staff login</a></li>
+</ul>
+            </div>
+        </div>
+        </div>
+</footer>
