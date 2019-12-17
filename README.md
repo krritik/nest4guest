@@ -15,8 +15,12 @@ This code was written using Python3 and Django2.
     Navigate like a normal web-site.
 
   5. If you want to see or edit the database/user info, you can add your own super-user by running python3 manage.py createsuperuser in the repo's directory. After creating superuser, use the credentials on 127.0.0.1:8000/admin/(or whatever your machine's local host is) to log-in and view the database.
-
-
+  
+  6. If you want to enable **stripe** payment then you first need to create a developer account in [stripe](https://stripe.com/en-in). In your account you will get two api keys. One **publishable key** and the other **secret key**. Make a .env file in the root folder and paste the keys there. For example : 
+  
+          `export STRIPE_SECRET_KEY = xxx`
+          `export STRIPE_PUBLISHABLE_KEY = xxx`
+          
 ## Test Version
 
   One can see the demo version of app deployed on heroku. 
