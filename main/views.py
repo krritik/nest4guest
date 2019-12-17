@@ -598,7 +598,7 @@ def roomdetails(request):                                           #request var
                 return redirect('index')
         else:  
             messages.warning(request, 'you are not logged in or have no access')
-            return redirect('profile')          
+            return redirect('login')          
 
 
 
