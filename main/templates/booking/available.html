@@ -265,7 +265,10 @@ body {
 class="button" style="width: 100%" onclick="location.href=">Details</button><br>
 					</td>-->
                                                         <td>
-                                                           <button class="button" style="width: 50%" onclick="location.href='/roomdetails'">Details </button><br>
+                                                          <form method='POST' action='{% url "roomdetails" %}'>
+                                                            {% csrf_token %}
+                                                           <button class="button" style="width: 100%" >Details</button><br>
+                                                          </form>
                                                             </td>
                    
 
