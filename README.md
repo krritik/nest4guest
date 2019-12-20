@@ -11,15 +11,20 @@ This code was written using Python3 and Django2.
   1. Clone the repo to your local machine.
   2. Install django2 and other dependencies(as stated in requirements.txt). 
   3. To start the server go to the repo directory in terminal and type python3 manage.py runserver. Note:Keep this running as long as you are using the website.
-  4. Now open browser and visit 127.0.0.1:8000/home(or something similar that appeared on terminal when previous command was run).       This is the home-page of this web-site.(locally).
+  4. Now open browser and visit 127.0.0.1:8000(or something similar that appeared on terminal when previous command was run).       This is the home-page of this web-site.(locally).
     Navigate like a normal web-site.
 
   5. If you want to see or edit the database/user info, you can add your own super-user by running python3 manage.py createsuperuser in the repo's directory. After creating superuser, use the credentials on 127.0.0.1:8000/admin/(or whatever your machine's local host is) to log-in and view the database.
-
+  
+  6. If you want to enable **stripe** payment then you first need to create a developer account in [stripe](https://stripe.com/en-in). In your account you will get two api keys. One **publishable key** and the other **secret key**. Make a .env file in the root folder and paste the keys there. For example : 
+  
+          `export STRIPE_SECRET_KEY = xxx`
+          `export STRIPE_PUBLISHABLE_KEY = xxx`
+          
 ## Test Version
 
   One can see the demo version of app deployed on heroku. 
-  For that just visit the following url : https://nest4guest.herokuapp.com/home/
+  For that just visit the following url : https://nest4guest.herokuapp.com/
 
 ## Contribution Guidelines:
 
