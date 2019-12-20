@@ -591,7 +591,7 @@ def cancelwaiting(request, id):                                             #req
 def roomdetails(request):                                           #request variable takes a GET or POST HTTP request
         user = request.user
         if user.username and user.is_staff is False and user.is_superuser is False:
-            if request == 'POST':
+            if request.method == 'POST':
                 return render(request, "booking/roomdetails.html")
             else:
                 messages.warning(request, 'something went wrong')
