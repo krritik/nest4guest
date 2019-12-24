@@ -476,7 +476,33 @@
       left:50%;
       top:40% ;
       text-align: center; }
+
+  .table {
+    border: 2px;
+  }
   
+  .th, .td {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    
+  }
+  @media (max-width: 50em){
+    .th, .td{
+      padding: 1.2rem;
+      font-size: 1.2rem;
+    }
+  }
+
+  .tr:nth-child(odd){background-color: #96b4f7}
+  
+  .th {
+    background-color: rgba(0, 90, 167, 0.8);
+    color: white;
+  }
+
   .navigation__checkbox {
     display: none; }
   

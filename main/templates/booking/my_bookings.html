@@ -32,20 +32,20 @@
 <br><br>
 
   <div class="column middle">
-  <h3 class="heading-tertiary">Current Bookings</h3><br>
+  <h3 class="td">Current Bookings</h3><br>
 		{% if reservation %}
 
-<h3 align="center" class="heading-tertiary">Confirmed Bookings</h3>
+<h3 align="center" class="td">Confirmed Bookings</h3>
 
-<table border="2" align="center">
-<tr style="background-color: #0f2453">
-<th style="color: white" class="heading-tertiary">Guest House</th>
-<th style="color: white" class="heading-tertiary">Room Type</th>
-    <th style="color: white" class="heading-tertiary">Room</th>
-    <th style="color: white" class="heading-tertiary">CheckIn</th>                                                       
-    <th style="color: white" class="heading-tertiary">CheckOut</th>
-<th style="color: white" class="heading-tertiary">BookDate</th>
-<th style="color: white;margin-right: 1%" class="heading-tertiary">Action</th>
+<table class="table" align="center">
+<tr class="tr">
+<th class="th">Guest House</th>
+<th class="th">Room Type</th>
+    <th class="th">Room</th>
+    <th class="th">CheckIn</th>                                                       
+    <th class="th">CheckOut</th>
+<th class="th">BookDate</th>
+<th style="color: white;margin-right: 1%" class="th">Action</th>
     </tr>
 
 
@@ -56,13 +56,13 @@
 
 
 
-<tr>
-    <td class="heading-tertiary">{{ r.guesthouse }}</td>
-    <td class="heading-tertiary">{{ r.room_type }}</td>
-<td class="heading-tertiary">{{ r.rooms_allocated }}</td>
-<td class="heading-tertiary">{{ r.start_date }}</td>
-<td class="heading-tertiary">{{ r.end_date }}</td>
-<td class="heading-tertiary">{{ r.booktime }}</td>
+<tr class="tr">
+<td class="td">{{ r.guesthouse }}</td>
+<td class="td">{{ r.room_type }}</td>
+<td class="td">{{ r.rooms_allocated }}</td>
+<td class="td">{{ r.start_date }}</td>
+<td class="td">{{ r.end_date }}</td>
+<td class="td">{{ r.booktime }}</td>
     <td><form method="get"  action="{% url 'cancel' r.id %}">{% csrf_token %}
                     
             <br><button class="button" style="width: 100%">Cancel</button><br><br>
@@ -77,17 +77,17 @@
 
 </table>
 <br><br>
-<h3 align="center" class="heading-tertiary">Waiting Bookings</h3>
+<h3 align="center" class="td">Waiting Bookings</h3>
 
-<table border="2" align="center">
-<tr style="background-color: #0f2453">
-<th style="color: white" class="heading-tertiary">Guest House</th>
-<th style="color: white" class="heading-tertiary">Room Type</th>
-    <th style="color: white" class="heading-tertiary">Room</th>
-    <th style="color: white" class="heading-tertiary">CheckIn</th>                                                       
-    <th style="color: white" class="heading-tertiary">CheckOut</th>
-<th style="color: white" class="heading-tertiary">BookDate</th>
-<th style="color: white;margin-right: 1%" class="heading-tertiary">Action</th>
+<table class="table" align="center">
+<tr class="tr">
+<th class="th">Guest House</th>
+<th class="th">Room Type</th>
+    <th class="th">Room</th>
+    <th class="th">CheckIn</th>                                                       
+    <th class="th">CheckOut</th>
+<th class="th">BookDate</th>
+<th style="color: white;margin-right: 1%" class="th">Action</th>
     </tr>
 
 
@@ -98,13 +98,13 @@
 
 
 
-<tr>
-    <td class="heading-tertiary">{{ r.guesthouse }}</td>
-    <td class="heading-tertiary">{{ r.room_type }}</td>
-<td class="heading-tertiary">{{ r.rooms_allocated }}</td>
-<td class="heading-tertiary">{{ r.start_date }}</td>
-<td class="heading-tertiary">{{ r.end_date }}</td>
-<td class="heading-tertiary">{{ r.booktime }}</td>
+<tr class="tr">
+    <td class="td">{{ r.guesthouse }}</td>
+    <td class="td">{{ r.room_type }}</td>
+<td class="td">{{ r.rooms_allocated }}</td>
+<td class="td">{{ r.start_date }}</td>
+<td class="td">{{ r.end_date }}</td>
+<td class="td">{{ r.booktime }}</td>
     <td><form method="get"  action="{% url 'cancelwaiting' r.id %}">{% csrf_token %}
                     
             <br><button class="button" style="width: 100%">Cancel</button><br><br>
@@ -123,7 +123,7 @@
 
 
 		{% else %}
-			<h3 align="center" class="heading-tertiary">You have no current Bookings</h3>
+			<h3 align="center" class="td">You have no current Bookings</h3>
 							
 	        {% endif %}
 

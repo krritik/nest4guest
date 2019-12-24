@@ -37,19 +37,19 @@
 <h3 class="heading-tertiary">Guest House : {{ room.G.name }}</h3>
 
     
-        <table border="2" align="center">
-            <tr style="background-color: #0f2453">
-              <th style="color: white" class="heading-tertiary">Rooms Types</th>
-              <th style="color: white" class="heading-tertiary">Number of Rooms Available</th>                                                       
-              <th style="color: white" class="heading-tertiary">Book</th>
-              <th style="color: white;margin-right: 1%" class="heading-tertiary">Details</th>
+        <table class="table" align="center">
+            <tr class="tr">
+              <th class="th">Rooms Types</th>
+              <th class="th">Number of Rooms Available</th>                                                       
+              <th class="th">Book</th>
+              <th style="margin-right: 1%" class="th">Details</th>
             </tr>
 
             {% for r in room.rooms %}
         
-            <tr>
-              <td class="heading-tertiary">{{ r.type }}</td>
-              <td class="heading-tertiary" align="center">{{ r.count }}</td>
+            <tr class= "tr">
+              <td class="td">{{ r.type }}</td>
+              <td class="td">{{ r.count }}</td>
         
               <td>
                 <form method='post' action='{% url "payment" room.G.id T.id r.type r.count %}'>

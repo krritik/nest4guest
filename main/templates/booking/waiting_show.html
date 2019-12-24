@@ -37,24 +37,24 @@
 <h3 class="heading-tertiary">Guest House : {{ room.G.name }}</h3>
 
 
-<table border="2" align="center">
-  <tr style="background-color: #0f2453">
-    <th style="color: white" class="heading-tertiary">Rooms Types</th>
-    <th style="color: white" class="heading-tertiary">Number of Waiting</th>                                                       
-    <th style="color: white" class="heading-tertiary">Continue Waiting</th>
-    <th style="color: white;margin-right: 1%" class="heading-tertiary">Details</th>
+<table class="table" align="center">
+  <tr class="tr">
+    <th class="th">Rooms Types</th>
+    <th class="th">Number of Waiting</th>                                                       
+    <th class="th">Continue Waiting</th>
+    <th style="color: white" class="th">Details</th>
   </tr>
 
   {% for r in room.room2 %}
-  <tr>
-    <td class="heading-tertiary">{{ r.type }}</td>
-    <td class="heading-tertiary" align="center">{{ r.count }}</td>
+  <tr class="tr">
+    <td class="td">{{ r.type }}</td>
+    <td class="td" align="center">{{ r.count }}</td>
 
 </td>
-    <td>
+    <td align="center">
     <form method="post"  action="{% url 'waiting' room.G.id T.id r.type %}">{% csrf_token %}
                 
-                <br><button class="button" style="width: 100%">Waiting</button><br><br>
+                <br><button class="button" style="width: 50%">Waiting</button><br><br>
             </form>
     </td>
 <td><br>
