@@ -19,8 +19,9 @@
 
 <br><br>
   <div align="center">
-    <h2 class = "heading-secondary">Search Rooms</h2>
-  
+  <div class = "section-book">
+    <h2 class = "heading-secondary" style="color: white">Search Rooms</h2>
+    <div class = "book__form">
        <form method="post" action="{% url 'index' %}" id="options_form"> 
                         {{ form.as_p }}
                         {% csrf_token %}
@@ -28,8 +29,8 @@
                         <button class="btn btn--green" type="submit">Search</button>
 
        </form>                 
-  
-  
+  </div>
+  </div>
   <div class="column side">
     <h2></h2>
     <p></p>

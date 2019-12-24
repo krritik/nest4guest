@@ -37,15 +37,19 @@
     font-size: 62.5%; }
   
   body {
-    box-sizing: border-box; }
-  
-  body {
     font-family: "Lato", sans-serif;
     font-weight: 400;
     /*font-size: 16px;*/
     line-height: 1.7;
     color: rgb(2, 0, 0);
-    padding: 3rem; }
+    padding: 3rem;
+    box-sizing: border-box; }
+
+    @media (max-width: 50em){
+      .body{
+        padding: 0rem;
+      }
+    }
   
   .heading-primary {
     color: #fff;
@@ -63,13 +67,25 @@
       animation-duration: 1s;
       animation-timing-function: ease-out;
      }
+     @media (max-width: 50em){
+      .heading-primary--main{
+        font-size: 4rem;
+        letter-spacing: .5rem;
+      }
+    }
+  
     .heading-primary--sub {
       display: block;
       font-size: 2rem;
       font-weight: 700;
       letter-spacing: 1.75rem;
       animation: moveInRight 1s ease-out; }
-  
+      @media (max-width: 50em){
+        .heading-primary--sub{
+          letter-spacing: .5rem;
+        }
+      }
+    
   .heading-secondary {
     font-size: 3.5rem;
     text-transform: uppercase;
@@ -82,7 +98,14 @@
     transition: all .2s; }
     .heading-secondary:hover {
       text-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2); }
-  
+
+      @media (max-width: 50em){
+        .heading-secondary{
+          font-size: 2.5rem;
+          letter-spacing: 0rem;
+        }
+      }
+      
   .heading-tertiary {
     font-size: 1.6rem;
     font-weight: 700;
@@ -320,6 +343,12 @@
     width: 50%;
     display: block;
     transition: all .3s; }
+    
+    @media (max-width: 50em){
+      .form__input{
+        width: 90%;
+      }
+    }
     .form__input:focus {
       outline: none;
       box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
@@ -342,44 +371,6 @@
     visibility: hidden;
     transform: translateY(-4rem); }
   
-  .form__radio-group {
-    width: 49%;
-    display: inline-block; }
-  
-  .form__radio-input {
-    display: none; }
-  
-  .form__radio-label {
-    font-size: 1.6rem;
-    cursor: pointer;
-    position: relative;
-    padding-left: 4.5rem; }
-  
-  .form__radio-button {
-    height: 3rem;
-    width: 3rem;
-    border: 5px solid #55c57a;
-    border-radius: 50%;
-    display: inline-block;
-    position: absolute;
-    left: 0;
-    top: -.4rem; }
-    .form__radio-button::after {
-      content: "";
-      display: block;
-      height: 1.3rem;
-      width: 1.3rem;
-      border-radius: 50%;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #55c57a;
-      opacity: 0;
-      transition: opacity .2s; }
-  
-  .form__radio-input:checked ~ .form__radio-label .form__radio-button::after {
-    opacity: 1; }
   
   
   .footer {
@@ -387,14 +378,34 @@
     padding: 10rem 0;
     font-size: 1.4rem;
     color: #f7f7f7; }
+    
     .footer__navigation {
       border-top: 1px solid #777;
       padding-top: 2rem;
       display: inline-block; }
+
+      @media (max-width: 50em){
+        .footer__navigation{
+          text-align: center;
+          width: 100%;
+        }
+        .footer{
+          padding:5rem 0;
+        }
+      }
+
     .footer__list {
       list-style: none; }
     .footer__item {
       display: inline-block; }
+      
+    @media (max-width: 50em){
+      .footer__item{
+        width: 90%;
+        display: list-item;
+      }
+    }
+
       .footer__item:not(:last-child) {
         margin-right: 1.5rem; }
     .footer__link:link, .footer__link:visited {
@@ -403,6 +414,7 @@
       text-transform: uppercase;
       display: inline-block;
       transition: all .2s; }
+      
     .footer__link:hover, .footer__link:active {
       color: #55c57a;
       box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4);
@@ -418,6 +430,7 @@
     margin: 0 auto; }
     .row:not(:last-child) {
       margin-bottom: 8rem; }
+      
     .row::after {
       content: "";
       display: table;
@@ -438,13 +451,24 @@
       width: calc(2 * ((100% - 3 * 6rem) / 4) + 6rem); }
     .row .col-3-of-4 {
       width: calc(3 * ((100% - 3 * 6rem) / 4) + 2 * 6rem); }
-  
+      @media (max-width: 50em){
+        .row,.row .col-1-of-2, .row .col-1-of-3, .row::after, .row:not(:last-child), .row .col-2-of-3,.row .col-1-of-4{
+          width: 100% !important;
+        }
+      }
   .header {
     height: 60vh;
     background-image: linear-gradient(to right bottom, rgba(0, 90, 167,0.6), rgba(255, 253, 228, 0.6)), url(../images/portico2.jpg);
     background-size: cover;
     background-position: top;
     position: relative;}
+    @media (max-width: 50em){
+      .header{
+        width:100%;
+        font-size: 70%;
+      }
+    }
+  
 
     .header__text-box {
       position: absolute;
@@ -512,7 +536,8 @@
     text-transform: uppercase;
     background-image: linear-gradient(120deg, transparent 0%, transparent 50%, #fff 50%);
     background-size: 220%;
-    transition: all .4s; }
+    transition: all .4s;
+   }
     .navigation__link:link span, .navigation__link:visited span {
       margin-right: 1.5rem;
       display: inline-block; }
@@ -575,16 +600,37 @@
   
   
   .section-book {
-    padding: 15rem 0;
+    padding: 6rem 0rem;
     background-image: linear-gradient(to right bottom, rgba(0, 90, 167, 0.8), rgba(255, 253, 228, 0.8)); }
-  
+    
+    @media (max-width: 50em){
+      .section-features, .section-tours, .section-book{
+        padding: 10rem 0;
+      }
+    }
+
   .book {
     background-image: linear-gradient(105deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 50%, transparent 50%), url(../images/reception2.jpg);
     background-size: 100%;
     border-radius: 3px;
     box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
-    height: 50rem; }
+     }
+     
+     @media (max-width: 50em){
+      .book{
+        padding: 10rem 0;
+        background-image: linear-gradient(to right bottom, rgba(0, 90, 167, 0.8), rgba(255, 253, 228, 0.8)); }
+      }
+    
+
     .book__form {
       width: 50%;
       padding: 6rem; }
- 
+    
+  
+    @media (max-width: 50em){
+      .book__form{
+        width: 80%;
+        margin-left:20%;
+      }
+    }
