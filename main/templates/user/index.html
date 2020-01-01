@@ -23,7 +23,20 @@
     <h2 class = "heading-secondary" style="color: white">Search Rooms</h2>
     <div class = "book__form">
        <form method="post" action="{% url 'index' %}" id="options_form"> 
-                        {{ form.as_p }}
+                        <h2 class= "heading-tertiary">Start Date</h2><br>
+                        <h2 style='color:red' class= "heading-tertiary">
+                        {{form.start_date.errors}}</h2>
+
+                        {{ form.start_date }}
+                        
+                        <br>
+                        <h2 class= "heading-tertiary">End Date</h2><br>
+                        <h2 style='color:red'class= "heading-tertiary">
+                        {{form.end_date.errors}}</h2>
+                        
+                        {{ form.end_date }}
+                        <br>
+
                         {% csrf_token %}
                         <br>
                         <button class="btn btn--green" type="submit">Search</button>

@@ -34,7 +34,43 @@
                                 </div>    
                                     <form method="post" class="form">
                                     {% csrf_token %}
-                                    {{form}}
+                                    <h2 class= "heading-tertiary">UserName</h2><br>
+                                    <h2 style='color:red' class= "heading-tertiary">
+                                    {{form.username.errors}}</h2>
+                                    
+                                    {{form.username}}<br>
+                                    
+                                    <h2 class= "heading-tertiary">FirstName</h2><br>
+                                    <h2 style='color:red' class= "heading-tertiary">
+                                    {{form.first_name.errors}}</h2>
+                                    
+                                    {{form.first_name}}
+                                    <br>
+                                    
+                                    <h2 class= "heading-tertiary">LastName</h2><br>
+                                    <h2 style='color:red' class= "heading-tertiary">
+                                    {{form.last_name.errors}}</h2>
+                                    
+                                    {{form.last_name}}
+                                    <br>
+                                    
+                                    <h2 class= "heading-tertiary">Email</h2><br>
+                                    
+                                    <h2 style='color:red' class= "heading-tertiary">{{form.email.errors}}</h2>
+                                    {{form.email}}
+                                    <br>
+                                    
+                                    <h2 class= "heading-tertiary">Password</h2><br>
+                                    
+                                    <h2 style='color:red' class= "heading-tertiary">{{form.password1.errors}}</h2>
+                                    {{form.password1}}
+                                    <br>
+                                    
+                                    <h2 class= "heading-tertiary">Confirm Password</h2><br>
+                                    
+                                    <h2 style='color:red' class= "heading-tertiary">{{form.password2.errors}}</h2>
+                                    {{form.password2}}
+                                    
                                 <div class="form__group">
                                 <br><br>
                                     <button class="btn btn--green" type="submit">Sign in &rarr;</button>

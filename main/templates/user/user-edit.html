@@ -21,7 +21,26 @@
                                 <form method="post" class="form" >
     
                                 {% csrf_token %}
-                                {{form}}
+
+                                <h2 class= "heading-tertiary">First Name</h2><br>
+                                <h2 style='color:red'class= "heading-tertiary">
+                                    {{form.first_name.errors}}</h2>
+                                
+                                {{form.first_name}}
+                                <br>
+
+                                <h2 class= "heading-tertiary">Last Name</h2><br>
+                                <h2 style='color:red'class= "heading-tertiary">
+                                    {{form.last_name.errors}}</h2>
+
+                                {{form.last_name}}
+                                <br>
+
+                                <h2 class= "heading-tertiary">Email</h2><br>
+                                <h2 style='color:red'class= "heading-tertiary">
+                                    {{form.email.errors}}</h2>
+
+                                {{form.email}}
                             
                                 <div class="form__group">
                                 <br><br>

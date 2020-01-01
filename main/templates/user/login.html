@@ -20,6 +20,17 @@
   {% include 'partials/_navbar_base.html' %}
     <!-- Main Content -->
   {% block content %} {% endblock %}
+  
+  {% for message in messages %}
+		{% if message%}
+
+        <a  href="#" data-dismiss="alert">×</a>
+				
+			<h2 style='color:red' class= "heading-tertiary">
+      window.alert({{message}})</h2>
+		{%endif%}
+
+            {% endfor %}
 <br><br>
                 <div class="row">
                     <div class="book">
@@ -34,7 +45,14 @@
                                 <form method="post" class="form" >
     
                                 {% csrf_token %}
-                                {{form}}
+                                <h2 class= "heading-tertiary">Username</h2><br>
+
+                                {{form.username}}
+                                <br><br>
+                                <h2 class= "heading-tertiary">Password</h2><br>
+
+                                {{form.password}}
+
                                 <div class="form__group">
                                 <br><br>
                                     <button class="btn btn--green" type="submit">LOGIN &rarr;</button>
@@ -43,15 +61,6 @@
                         </div>
                     </div>
                 </div>
-            {% for message in messages %}
-		{% if message%}
-
-        <a  href="#" data-dismiss="alert">×</a>
-				
-					window.alert({{message}})
-		{%endif%}
-
-            {% endfor %}
 	
 
 <!-- Footer -->
