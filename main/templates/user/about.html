@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <title>nest4guest &mdash; IIT KGP</title></head>
+
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  
+</head>
+
+<body>
+  <!-- Top Bar -->
+  {% include 'partials/_topbar_base.html' %}
+  <!-- NavBar -->
+  {% include 'partials/_navbar_base.html' %}
+    <!-- Main Content -->
+  {% block content %} {% endblock %}
+
+                
+
+                <section class="section-features">
+                <div class = row>
+                <h2 class = "heading-tertiary">
+
+Located in the beautiful campus of one of the most prestigious institutions of India, the Indian Institute of Technology Kharagpur (IIT KGP), the IIT Kharagpur Guest Houses consisting of the Technology Guest House(TGH),Ashutosh Mukherjee Guest House(AM) and Alumni Guest House(VGH), offering AC/ Rooms, Non AC Rooms and Suite Rooms including dinning facilities provides a pleasant accommodation for the Institute’s guests, whether guests from academia, or the Institue's alumni, or the parents/wards of its students. Just a short stroll away from the Main Gate, the primary entry to the institute, these restful residences are flanked by green lawns and walkways.
+
+Located inside the campus of Indian Institute of Technology Kharagpur, the Guest Houses are about 150 KM from Kolkata and about 5 KM from Kharagpur Railway Station. IIT Kharagpur also has a Guest House at Salt Lake – Kolkata, located in Sector – III which is about 20 KM from Airport.
+                </h2>
+            </div>
+</section>
+
+<section class="section-tours" id="section-tours">
+                <div class="u-center-text u-margin-bottom-big">
+                    <h2 class="heading-secondary">
+                        OUR GUEST HOUSE LIST
+                    </h2>
+                </div>
+
+                <div class="row">
+                    <div class="col-1-of-3">
+                       <div class="card">
+                           <div class="card__side card__side--front">
+                                <div class="card__picture card__picture--1">
+                                    &nbsp;
+                                </div>
+                                <h4 class="card__heading">
+                                    <span class="card__heading-span card__heading-span--1">The Ashutosh Mukherjee Guest House</span>
+                                </h4>
+                                </div>
+                           <div class="card__side card__side--back card__side--back-1">
+                                <div class="card__cta">
+                                        <div class="card__details">
+                                    <ul>
+                                        <li>Accommodation : 48 single rooms</li>
+                                            <li>Telephone Numbers:</li>
+                                            <li>Reception: 81138</li>
+                                            <li>From outside:</li>
+                                            <li>+91-3222-281138 </li> </ul>
+                                </div>
+                           </div>
+                            </div>
+                       </div>
+                    </div>
+
+
+                    <div class="col-1-of-3">
+                        <div class="card">
+                            <div class="card__side card__side--front">
+                                <div class="card__picture card__picture--2">
+                                    &nbsp;
+                                </div>
+                                <h4 class="card__heading">
+                                    <span class="card__heading-span card__heading-span--2">The Technology Guest House</span>
+                                </h4>
+                                </div>
+                            <div class="card__side card__side--back card__side--back-2">
+                                <div class="card__cta">
+                                    <div class="card__details">
+                                    <ul>
+                                        <li>Air conditioned single / double bedded rooms and suites</li>
+                                        <li>Telephone Numbers:</li>
+                                        <li>Reception: 82800</li>
+                                        <li>From campus : 828**</li>
+                                        <li>From outside : +91-3222-2828** </li> 
+                                        </ul>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-1-of-3">
+                        <div class="card">
+                            <div class="card__side card__side--front">
+                                <div class="card__picture card__picture--3">
+                                    &nbsp;
+                                </div>
+                                <h4 class="card__heading">
+                                    <span class="card__heading-span card__heading-span--3">The Alumni Guest House</span>
+                                </h4>
+
+                            </div>
+                            <div class="card__side card__side--back card__side--back-3">
+                                <div class="card__cta">
+                                <div class="card__details">
+                                    <ul> <li>  Total accommodation : 90 beds
+                                        (single, double bedded rooms and dormitory)
+                                        </li>
+                                        <li>Telephone Numbers:</li>
+                                        <li>Reception: 82880</li>
+                                    <li>  From outside:
+                                    +91-3222-282880</li></ul>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </section>
+
+
+<!-- Footer -->
+  {% include 'partials/_footer_base.html' %}
+  
+
+    </body>

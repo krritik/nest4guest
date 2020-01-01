@@ -24,11 +24,11 @@ from django.contrib.auth.models import Group
 
 #Function to display the Homepage of the web system
 def home(request):      
-    return render(request=request, template_name="home.html")
+    return render(request=request, template_name="user/home.html")
 
 #Function to display the about page of the web system
 def about(request):
-    return render(request=request, template_name="about.html")
+    return render(request=request, template_name="user/about.html")
 
 #Function to Sign up new user
 def sign_up(request):
@@ -340,10 +340,8 @@ def cancel(request, id):                                    #request variable ta
                     start_date = waiting_one.start_date 
                     end_date = waiting_one.end_date
                     res_3 = waiting_one.resID
-
                     T = Reservation.objects.filter(
                     Q(start_date__range=(start_date, end_date)) | Q(end_date__range=(start_date, end_date))).filter(status=True).filter(waiting=False)
-
                     for r in T:
                         if(r == reservation):
                             new_reservation = waiting_one.resID
@@ -353,7 +351,6 @@ def cancel(request, id):                                    #request variable ta
                             waiting_one.delete()
                             flag = 1
                             break
-
                     if flag == 1:
                         break  
                 """
@@ -599,7 +596,6 @@ def roomdetails(request):                                           #request var
         else:  
             messages.warning(request, 'you are not logged in or have no access')
             return redirect('login')          
-
 
 
 
