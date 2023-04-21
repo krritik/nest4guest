@@ -3,7 +3,7 @@ Django==2.2.13
 gunicorn==20.0.0
 psycopg2==2.8.4
 pytz==2019.3
-sqlparse==0.3.0
+sqlparse==0.4.4
 whitenoise==4.1.4
 python-dotenv == 0.10.3
 stripe == 2.38.0
